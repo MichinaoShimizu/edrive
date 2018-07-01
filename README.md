@@ -1,6 +1,7 @@
 # Edrive
 
 [![Gem Version](https://badge.fury.io/rb/edrive.svg)](https://badge.fury.io/rb/edrive)
+[![CircleCI](https://circleci.com/gh/MichinaoShimizu/edrive.svg?style=svg)](https://circleci.com/gh/MichinaoShimizu/edrive)
 
 Provide simple event dispatcher mechanism for all of ruby products.
 
