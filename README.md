@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-### regist lambda & dispatch
+### lambda & dispatch
 
 ```ruby
 dispatcher = Edrive::Dispatcher.new
@@ -36,7 +36,7 @@ dispatcher.dispatch(:event)
 3
 ```
 
-### regist lambda & dispatch with data
+### lambda & dispatch with data
 
 ```ruby
 dispatcher = Edrive::Dispatcher.new
@@ -49,7 +49,7 @@ dispatcher.dispatch_with_data(:event, 100)
 106
 ```
 
-### regist block
+### block
 
 ```ruby
 dispatcher = Edrive::Dispatcher.new
@@ -63,7 +63,7 @@ dispatcher.dispatch(:event)
 3
 ```
 
-### regist block & dispatch with data
+### block & dispatch with data
 
 ```ruby
 dispatcher = Edrive::Dispatcher.new
@@ -73,6 +73,30 @@ dispatcher.subscribe(:event) { |data| data + 3 }
 dispatcher.dispatch_with_data(:event, 100)
 
 106
+```
+
+### multi dispatch
+
+```ruby
+dispatcher = Edrive::Dispatcher.new
+dispatcher.subscribe(:event) { puts 1 }
+dispatcher.multi_dispatch(3, :event)
+
+1
+1
+1
+```
+
+### multi dispatch with data
+
+```ruby
+dispatcher = Edrive::Dispatcher.new
+dispatcher.subscribe(:event) { |data| data + 1 }
+dispatcher.multi_dispatch_with_data(3, :event, 0)
+
+1
+2
+3
 ```
 
 ### clear target event
