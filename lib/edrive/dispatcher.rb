@@ -2,85 +2,72 @@ module Edrive
   # Simple Event Dispatcher
   # @author Michinao Shimizu <shimizu.michinao@gmail.com>
   class Dispatcher
-    attr_accessor :event_listeners
-
     # initialize
     def initialize
-      @event_listeners = {}
+      @events = {}
     end
 
-    # Subscribe with proc, lambda
+    # regist handler (proc, lambda, block)
     # @param [Symbol] event event name symbol
-    # @param [Proc] subscriber subscriber
+    # @param [Proc] handler handler (lambda, proc)
+    # @param [Block] block handler (block)
     # @raise ArgumentError
-    # @return [Array] registered subscriber list
-    def subscribe(event, subscriber)
-      raise ArgumentError, 'subscriber must be Proc object' unless subscriber.is_a?(Proc)
-      regist_subscriber_proc(event, subscriber)
+    # @return [Array] registered handler list
+    def on(event, handler = nil, &block)
+      hdl = block_given? ? block : handler
+      raise ArgumentError, 'handler must be Proc object' unless hdl.is_a?(Proc)
+      regist(event, hdl)
     end
 
-    # Subscribe with block
-    # @param [Symbol] event event name symbol
-    # @param [Block] subscriber subscriber
-    # @return [Array] registered subscriber list
-    def subscribe_block(event, &subscriber)
-      regist_subscriber_proc(event, subscriber)
-    end
-
-    # Dispatch specific event subscribers
+    # dispatch specific event handler
     # @param [Symbol] event event name
     # @param [Mixed] args
-    # @return [Mixed] last subscriber return value
-    def dispatch(event, *args)
+    # @return [Mixed] last handler return value
+    def fire(event, *args)
       result = nil
-
-      @event_listeners[event]&.each do |subscriber|
-        result = subscriber.call(*args)
-      end
+      @events[event]&.each { |hdl| result = hdl.call(*args) }
       result
     end
 
-    # Dispatch specific event subscribers with data
+    # dispatch specific event handlers with data
     # @param [Symbol] event event name
     # @param [Mixed] args
-    # @return [Mixed] last subscriber return value
-    def dispatch_with_data(event, data, *args)
+    # @return [Mixed] last handler return value
+    def fire_with_data(event, data, *args)
       result = data.dup
-      @event_listeners[event]&.each do |subscriber|
-        result = subscriber.call(result, *args)
-      end
+      @events[event]&.each { |hdl| result = hdl.call(result, *args) }
       result
     end
 
-    # Get specific event subscribers
+    # get event handlers
     # @param [Symbol] event event name symbol
-    # @return [Array] registered subscriber list
-    def subscribers(event)
-      @event_listeners[event] || []
+    # @return [Array] registered handler list
+    def handlers(event)
+      @events[event] || []
     end
 
-    # Clear specific event subscribers
+    # clear event handlers
     # @param [Symbol] event event name symbol
     # @return [Array] emnpty array
-    def clear_subscribers!(event)
-      @event_listeners[event] = []
+    def clear!(event)
+      @events[event] = []
     end
 
-    # Clear all of event subscribers
+    # clear all of event handlers
     # @return [Hash] emnpty hash
-    def clear_all_subscribers!
-      @event_listeners = {}
+    def clear_all!
+      @events = {}
     end
 
     private
 
-    # Regist subscriber proc
+    # regist hanlder to target event
     # @param [Symbol] event event name symbol
-    # @param [Proc] subscriber subscriber
-    # @return [Array] registered subscriber list
-    def regist_subscriber_proc(event, subscriber)
-      @event_listeners[event] ||= []
-      @event_listeners[event] << subscriber
+    # @param [Proc] handler handler
+    # @return [Array] registered handler list
+    def regist(event, handler)
+      @events[event] ||= []
+      @events[event] << handler
     end
   end
 end

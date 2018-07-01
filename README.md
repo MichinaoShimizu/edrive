@@ -26,9 +26,9 @@ Or install it yourself as:
 
 ```ruby
 dispatcher = Edrive::Dispatcher.new
-dispatcher.subscribe(:event, -> { puts 1 })
-dispatcher.subscribe(:event, -> { puts 2 })
-dispatcher.subscribe(:event, -> { puts 3 })
+dispatcher.on(:event, -> { puts 1 })
+dispatcher.on(:event, -> { puts 2 })
+dispatcher.on(:event, -> { puts 3 })
 dispatcher.dispatch(:event)
 
 1
@@ -40,11 +40,11 @@ dispatcher.dispatch(:event)
 
 ```ruby
 dispatcher = Edrive::Dispatcher.new
-dispatcher.subscribe(:event, ->(data) { data + 1 })
-dispatcher.subscribe(:event, ->(data) { data + 2 })
-dispatcher.subscribe(:event, ->(data) { data + 3 })
-dispatcher.subscribe(:event, ->(data) { puts data })
-dispatcher.dispatch_with_data(:event, 100)
+dispatcher.on(:event, ->(data) { data + 1 })
+dispatcher.on(:event, ->(data) { data + 2 })
+dispatcher.on(:event, ->(data) { data + 3 })
+dispatcher.on(:event, ->(data) { puts data })
+dispatcher.fire_with_data(:event, 100)
 
 106
 ```
@@ -53,10 +53,10 @@ dispatcher.dispatch_with_data(:event, 100)
 
 ```ruby
 dispatcher = Edrive::Dispatcher.new
-dispatcher.subscribe_block(:event) { puts 1 }
-dispatcher.subscribe_block(:event) { puts 2 }
-dispatcher.subscribe_block(:event) { puts 3 }
-dispatcher.dispatch(:event)
+dispatcher.on(:event) { puts 1 }
+dispatcher.on(:event) { puts 2 }
+dispatcher.on(:event) { puts 3 }
+dispatcher.fire(:event)
 
 1
 2
@@ -67,10 +67,10 @@ dispatcher.dispatch(:event)
 
 ```ruby
 dispatcher = Edrive::Dispatcher.new
-dispatcher.subscribe_block(:event) { |data| data + 1 }
-dispatcher.subscribe_block(:event) { |data| data + 2 }
-dispatcher.subscribe_block(:event) { |data| data + 3 }
-dispatcher.dispatch_with_data(:event, 100)
+dispatcher.on(:event) { |data| data + 1 }
+dispatcher.on(:event) { |data| data + 2 }
+dispatcher.on(:event) { |data| data + 3 }
+dispatcher.fire(:event, 100)
 
 106
 ```
@@ -78,13 +78,13 @@ dispatcher.dispatch_with_data(:event, 100)
 ### clear target event
 
 ```ruby
-dispatcher.clear_subscribers!(:event)
+dispatcher.clear!(:event)
 ```
 
 ### clean all event
 
 ```ruby
-dispatcher.clear_all_subscribers!
+dispatcher.clear_all!
 ```
 
 ## Development
