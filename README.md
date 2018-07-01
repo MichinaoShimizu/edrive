@@ -1,6 +1,8 @@
 # Edrive
 
-We provide simple event dispatcher mechanism for your ruby products.
+[![Gem Version](https://badge.fury.io/rb/edrive.svg)](https://badge.fury.io/rb/edrive)
+
+Provide simple event dispatcher mechanism for all of ruby products.
 
 ## Installation
 
