@@ -9,8 +9,12 @@ Gem::Specification.new do |spec|
   spec.authors       = ["MichinaoShimizu"]
   spec.email         = ["shimizu.michinao@gmail.com"]
 
-  spec.summary       = %q{Generic Event Dispatcher}
-  spec.description   = %q{Generic Event Dispatcher}
+  spec.summary       = %q{Generic Event Dispatcher. Provide simple event dispatcher mechanism for all of ruby products.
+
+  }
+  spec.description   = %q{Generic Event Dispatcher. Provide simple event dispatcher mechanism for all of ruby products.
+
+  }
   spec.homepage      = "https://github.com/MichinaoShimizu/edrive"
   spec.license       = "MIT"
 
