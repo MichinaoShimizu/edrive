@@ -26,6 +26,8 @@ Or install it yourself as:
 
 ### Edrive::Dispatcher
 
+main class
+
 #### lambda & dispatch
 
 ```ruby
@@ -79,9 +81,21 @@ dispatcher.dispatch_with_data(:event, 100)
 106
 ```
 
+### clear target event
+
+```ruby
+dispatcher.clear!(:event)
+```
+
+### clear all event
+
+```ruby
+dispatcher.clear_all!
+```
+
 ### Edrive::ProcessorDispatcher
 
-Event dispatcher for processor class inherited `Edrive::Dispatcher` class.
+Event dispatcher for processor class inherited `Edrive::Dispatcher`.
 
 Use `:before_process`, `:after_process` events only in this class.
 
@@ -101,7 +115,7 @@ This class has `dispatch_all` method.
 
 ### Edrive::Handler
 
-sample event handlers.
+sample event handlers class.
 
 ```ruuby
 require 'edrive'
@@ -110,18 +124,6 @@ dispatcher = Edrive::Dispatcher.new
 dispatcher.subscribe(:before, Edrive::Handler.hash2json)
 dispatcher.subscribe(:before, Edrive::Handler.json2hash)
 puts dispatcher.dispatch_with_data(:before, hoge: 2, fuga: 3)
-```
-
-### clear target event
-
-```ruby
-dispatcher.clear!(:event)
-```
-
-### clear all event
-
-```ruby
-dispatcher.clear_all!
 ```
 
 ## Development
