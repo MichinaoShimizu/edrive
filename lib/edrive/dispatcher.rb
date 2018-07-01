@@ -29,18 +29,6 @@ module Edrive
       result
     end
 
-    # multiple dispatch
-    # @param [Integer] loop_num loop num
-    # @param [Symbol] event event name
-    # @param [Mixed] *args
-    # @return [Mixed] last handler return value
-    def multi_dispatch(loop_num, event, *args)
-      raise ArgumentError, 'loop_num must be integer.' unless loop_num.is_a?(Integer)
-      result = nil
-      loop_num.times { result = dispatch(event, *args) }
-      result
-    end
-
     # dispatch specific event handlers with data
     # @param [Symbol] event event name
     # @param [Mixed] data initial value
@@ -49,19 +37,6 @@ module Edrive
     def dispatch_with_data(event, data, *args)
       result = data.dup
       @events[event]&.each { |hdl| result = hdl.call(result, *args) }
-      result
-    end
-
-    # multiple dispatch with data
-    # @param [integer] loop_num loop_num
-    # @param [Symbol] event event name
-    # @param [Mixed] data  initial value
-    # @param [Mixed] *args
-    # @return [Mixed] last handler return value
-    def multi_dispatch_with_data(loop_num, event, data, *args)
-      raise ArgumentError, 'loop_num must be integer.' unless loop_num.is_a?(Integer)
-      result = data.dup
-      loop_num.times { result = dispatch_with_data(event, result, *args) }
       result
     end
 

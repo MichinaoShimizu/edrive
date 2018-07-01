@@ -77,18 +77,6 @@ dispatcher.dispatch_with_data(:event, 100)
 106
 ```
 
-### multi dispatch
-
-```ruby
-dispatcher = Edrive::Dispatcher.new
-dispatcher.subscribe(:event) { puts 1 }
-dispatcher.multi_dispatch(3, :event)
-
-1
-1
-1
-```
-
 ### clear target event
 
 ```ruby
