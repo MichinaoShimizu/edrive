@@ -29,7 +29,7 @@ dispatcher = Edrive::Dispatcher.new
 dispatcher.on(:event, -> { puts 1 })
 dispatcher.on(:event, -> { puts 2 })
 dispatcher.on(:event, -> { puts 3 })
-dispatcher.dispatch(:event)
+dispatcher.fire(:event)
 
 1
 2
