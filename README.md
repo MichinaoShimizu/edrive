@@ -1,4 +1,4 @@
-# Edrive
+# edrive
 
 [![Gem Version](https://badge.fury.io/rb/edrive.svg)](https://badge.fury.io/rb/edrive)
 [![CircleCI](https://circleci.com/gh/MichinaoShimizu/edrive.svg?style=svg)](https://circleci.com/gh/MichinaoShimizu/edrive)
@@ -89,25 +89,13 @@ dispatcher.multi_dispatch(3, :event)
 1
 ```
 
-### multi dispatch with data
-
-```ruby
-dispatcher = Edrive::Dispatcher.new
-dispatcher.subscribe(:event) { |data| data + 1 }
-dispatcher.multi_dispatch_with_data(3, :event, 0)
-
-1
-2
-3
-```
-
 ### clear target event
 
 ```ruby
 dispatcher.clear!(:event)
 ```
 
-### clean all event
+### clear all event
 
 ```ruby
 dispatcher.clear_all!
