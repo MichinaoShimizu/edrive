@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ### subsclibe lambda & dispatch
 
-```
+```ruby
 dispatcher = Edrive::Dispatcher.new
 dispatcher.subscribe(:event, -> { puts 1 })
 dispatcher.subscribe(:event, -> { puts 2 })
@@ -36,7 +36,7 @@ dispatcher.dispatch(:event)
 
 ### subsclibe lambda & dispatch with data
 
-```
+```ruby
 dispatcher = Edrive::Dispatcher.new
 dispatcher.subscribe(:event, ->(data) { data + 1 })
 dispatcher.subscribe(:event, ->(data) { data + 2 })
@@ -49,7 +49,7 @@ dispatcher.dispatch_with_data(:event, 100)
 
 ### subscribe with block
 
-```
+```ruby
 dispatcher = Edrive::Dispatcher.new
 dispatcher.subscribe_block(:event) { puts 1 }
 dispatcher.subscribe_block(:event) { puts 2 }
@@ -63,13 +63,13 @@ dispatcher.dispatch(:event)
 
 ### clear target event
 
-```
+```ruby
 dispatcher.clear_subscribers!(:event)
 ```
 
 ### clean all event
 
-```
+```ruby
 dispatcher.clear_all_subscribers!
 ```
 
