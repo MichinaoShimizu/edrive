@@ -1,5 +1,5 @@
-require "edrive/version"
-require "edrive/dispatcher"
+require 'edrive/version'
+require 'edrive/dispatcher'
 
 module Edrive
   # Your code goes here...
