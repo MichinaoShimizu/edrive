@@ -1,8 +1,6 @@
 # Edrive
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/edrive`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+We provide simple event dispatcher mechanism for your ruby products.
 
 ## Installation
 
@@ -22,7 +20,58 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### subsclibe lambda & dispatch
+
+```
+dispatcher = Edrive::Dispatcher.new
+dispatcher.subscribe(:event, -> { puts 1 })
+dispatcher.subscribe(:event, -> { puts 2 })
+dispatcher.subscribe(:event, -> { puts 3 })
+dispatcher.dispatch(:event)
+
+1
+2
+3
+```
+
+### subsclibe lambda & dispatch with data
+
+```
+dispatcher = Edrive::Dispatcher.new
+dispatcher.subscribe(:event, ->(data) { data + 1 })
+dispatcher.subscribe(:event, ->(data) { data + 2 })
+dispatcher.subscribe(:event, ->(data) { data + 3 })
+dispatcher.subscribe(:event, ->(data) { puts data })
+dispatcher.dispatch_with_data(:event, 100)
+
+106
+```
+
+### subscribe with block
+
+```
+dispatcher = Edrive::Dispatcher.new
+dispatcher.subscribe_block(:event) { puts 1 }
+dispatcher.subscribe_block(:event) { puts 2 }
+dispatcher.subscribe_block(:event) { puts 3 }
+dispatcher.dispatch(:event)
+
+1
+2
+3
+```
+
+### clear target event
+
+```
+dispatcher.clear_subscribers!(:event)
+```
+
+### clean all event
+
+```
+dispatcher.clear_all_subscribers!
+```
 
 ## Development
 
