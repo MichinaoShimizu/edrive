@@ -2,6 +2,8 @@
 
 [![Gem Version](https://badge.fury.io/rb/edrive.svg)](https://badge.fury.io/rb/edrive)
 [![CircleCI](https://circleci.com/gh/MichinaoShimizu/edrive.svg?style=svg)](https://circleci.com/gh/MichinaoShimizu/edrive)
+[![Maintainability](https://api.codeclimate.com/v1/badges/5ad04170d3d57b928dc6/maintainability)](https://codeclimate.com/github/MichinaoShimizu/edrive/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/5ad04170d3d57b928dc6/test_coverage)](https://codeclimate.com/github/MichinaoShimizu/edrive/test_coverage)
 
 Provide simple event dispatcher mechanism for all of ruby products.
 
