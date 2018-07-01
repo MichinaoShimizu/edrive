@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'edrive/version'
 require 'edrive/dispatcher'
 require 'edrive/processor_dispatcher'

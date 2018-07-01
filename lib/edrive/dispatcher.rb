@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Edrive
   # Simple Event Dispatcher
   # @author Michinao Shimizu <shimizu.michinao@gmail.com>
