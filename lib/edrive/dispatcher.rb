@@ -7,15 +7,15 @@ module Edrive
       @events = {}
     end
 
-    # regist handler (proc, lambda, block)
+    # subscribe handler (proc, lambda, block)
     # @param [Symbol] event event name symbol
     # @param [Proc] handler handler (lambda, proc)
     # @param [Block] block handler (block)
     # @raise ArgumentError
     # @return [Array] registered handler list
-    def on(event, handler = nil, &block)
+    def subscribe(event, handler = nil, &block)
       hdl = block_given? ? block : handler
-      raise ArgumentError, 'handler must be Proc object' unless hdl.is_a?(Proc)
+      raise ArgumentError, 'handler must be proc object' unless hdl.is_a?(Proc)
       regist(event, hdl)
     end
 
@@ -23,8 +23,8 @@ module Edrive
     # @param [Symbol] event event name
     # @param [Mixed] args
     # @return [Mixed] last handler return value
-    def fire(event, *args)
-      result = nil
+    def dispatch(event, data = nil, *args)
+      result = data
       @events[event]&.each { |hdl| result = hdl.call(*args) }
       result
     end
@@ -33,7 +33,7 @@ module Edrive
     # @param [Symbol] event event name
     # @param [Mixed] args
     # @return [Mixed] last handler return value
-    def fire_with_data(event, data, *args)
+    def dispatch_with_data(event, data, *args)
       result = data.dup
       @events[event]&.each { |hdl| result = hdl.call(result, *args) }
       result

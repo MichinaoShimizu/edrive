@@ -22,55 +22,55 @@ Or install it yourself as:
 
 ## Usage
 
-### subscribe lambda & dispatch
+### regist lambda & dispatch
 
 ```ruby
 dispatcher = Edrive::Dispatcher.new
-dispatcher.on(:event, -> { puts 1 })
-dispatcher.on(:event, -> { puts 2 })
-dispatcher.on(:event, -> { puts 3 })
-dispatcher.fire(:event)
+dispatcher.subscribe(:event, -> { puts 1 })
+dispatcher.subscribe(:event, -> { puts 2 })
+dispatcher.subscribe(:event, -> { puts 3 })
+dispatcher.dispatch(:event)
 
 1
 2
 3
 ```
 
-### subscribe lambda & dispatch with data
+### regist lambda & dispatch with data
 
 ```ruby
 dispatcher = Edrive::Dispatcher.new
-dispatcher.on(:event, ->(data) { data + 1 })
-dispatcher.on(:event, ->(data) { data + 2 })
-dispatcher.on(:event, ->(data) { data + 3 })
-dispatcher.on(:event, ->(data) { puts data })
-dispatcher.fire_with_data(:event, 100)
+dispatcher.subscribe(:event, ->(data) { data + 1 })
+dispatcher.subscribe(:event, ->(data) { data + 2 })
+dispatcher.subscribe(:event, ->(data) { data + 3 })
+dispatcher.subscribe(:event, ->(data) { puts data })
+dispatcher.dispatch_with_data(:event, 100)
 
 106
 ```
 
-### subscribe block
+### regist block
 
 ```ruby
 dispatcher = Edrive::Dispatcher.new
-dispatcher.on(:event) { puts 1 }
-dispatcher.on(:event) { puts 2 }
-dispatcher.on(:event) { puts 3 }
-dispatcher.fire(:event)
+dispatcher.subscribe(:event) { puts 1 }
+dispatcher.subscribe(:event) { puts 2 }
+dispatcher.subscribe(:event) { puts 3 }
+dispatcher.dispatch(:event)
 
 1
 2
 3
 ```
 
-### subscribe block & dispatch with data
+### regist block & dispatch with data
 
 ```ruby
 dispatcher = Edrive::Dispatcher.new
-dispatcher.on(:event) { |data| data + 1 }
-dispatcher.on(:event) { |data| data + 2 }
-dispatcher.on(:event) { |data| data + 3 }
-dispatcher.fire(:event, 100)
+dispatcher.subscribe(:event) { |data| data + 1 }
+dispatcher.subscribe(:event) { |data| data + 2 }
+dispatcher.subscribe(:event) { |data| data + 3 }
+dispatcher.dispatch_with_data(:event, 100)
 
 106
 ```
