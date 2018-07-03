@@ -1,8 +1,6 @@
 # edrive
 
 [![Gem Version](https://badge.fury.io/rb/edrive.svg)](https://badge.fury.io/rb/edrive)
-[![CircleCI](https://circleci.com/gh/MichinaoShimizu/edrive.svg?style=svg)](https://circleci.com/gh/MichinaoShimizu/edrive)
-[![Maintainability](https://api.codeclimate.com/v1/badges/5ad04170d3d57b928dc6/maintainability)](https://codeclimate.com/github/MichinaoShimizu/edrive/maintainability)
 
 Provide simple event dispatcher mechanism for all of ruby products.
 
