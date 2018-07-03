@@ -11,7 +11,7 @@ module Edrive
     attr_accessor :processor, :processor_process
 
     # @return [Array] defined event symbols
-    DEFINED_EVENT = %i[before after].freeze
+    DEFINED_EVENT = %i[before_process after_process].freeze
 
     # @return [Symbol] default processor process symbol
     DEFAULT_PROCESSOR_PROCESS = :process
